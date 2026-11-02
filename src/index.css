@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --brand: #0a7d5a;
+    --brand-hover: #086649;
+    --accent: #ffc83d;
+    --sale: #d92d20;
+    --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  }
+
+  .dark {
+    --brand: #3cc99a;
+    --brand-hover: #33b388;
+    --accent: #ffd25e;
+    --sale: #ff7a6e;
+  }
+}
+
+.awning-stripes {
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #0a7d5a 0 32px, #ffc83d 32px 64px);
+}
+
+.awning-logo {
+  background: repeating-linear-gradient(90deg, #0a7d5a 0 8px, #ffc83d 8px 16px);
+}
+
+.dark .awning-stripes {
+  background: repeating-linear-gradient(90deg, #3cc99a 0 32px, #ffd25e 32px 64px);
+}
+
+.dark .awning-logo {
+  background: repeating-linear-gradient(90deg, #3cc99a 0 8px, #ffd25e 8px 16px);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 160, 155, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 160, 155, 0.5);
+}

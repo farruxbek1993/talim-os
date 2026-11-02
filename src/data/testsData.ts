@@ -1,0 +1,551 @@
+export interface Question {
+  id: number;
+  question: string;
+  options: string[];
+  correctAnswer: number; // 0: A, 1: B, 2: C, 3: D
+  explanation: string;
+}
+
+export type TestCategoryKey = 'umumiy' | 'tarix' | 'algebra' | 'biologiya' | 'ingliz';
+
+export interface TestPackage {
+  id: string;
+  category: TestCategoryKey;
+  categoryName: string;
+  title: string;
+  description: string;
+  durationMinutes: number;
+  maxScore: number;
+  difficulty: 'Oson' | 'Oʻrtacha' | 'Murakkab';
+  participantsCount: number;
+  rating: number;
+  gradient: string;
+  badgeColor: string;
+  iconName: 'compass' | 'book' | 'calculator' | 'dna' | 'languages';
+  questions: Question[];
+}
+
+export const TEST_CATEGORIES: { id: TestCategoryKey | 'all'; name: string; countText?: string }[] = [
+  { id: 'all', name: 'Barcha testlar' },
+  { id: 'umumiy', name: 'Umumiy testlar' },
+  { id: 'tarix', name: 'Tarix fani' },
+  { id: 'algebra', name: 'Algebra' },
+  { id: 'biologiya', name: 'Biologiya' },
+  { id: 'ingliz', name: 'Ingliz tili' },
+];
+
+export const TEST_PACKAGES: TestPackage[] = [
+  // ================= UMUMIY TESTLAR =================
+  {
+    id: 'test_umumiy_1',
+    category: 'umumiy',
+    categoryName: 'Umumiy testlar',
+    title: 'DTM Standarti: Majburiy Fanlar Kompleks Testi',
+    description: 'Ona tili, matematika va Oʻzbekiston tarixi boʻyicha DTM talablariga mos umumiy integratsiyalashgan test.',
+    durationMinutes: 25,
+    maxScore: 45,
+    difficulty: 'Oʻrtacha',
+    participantsCount: 3840,
+    rating: 4.9,
+    gradient: 'from-amber-500 via-orange-500 to-rose-500',
+    badgeColor: 'bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-400/30',
+    iconName: 'compass',
+    questions: [
+      {
+        id: 1,
+        question: 'Oʻzbekiston Respublikasining davlat mustaqilligi qachon eʼlon qilingan?',
+        options: ['1991-yil 31-avgust', '1991-yil 1-sentyabr', '1992-yil 8-dekabr', '1990-yil 20-iyun'],
+        correctAnswer: 0,
+        explanation: '1991-yil 31-avgust kuni Oliy Kengashning navbatdan tashqari sessiyasida Oʻzbekiston Respublikasining davlat mustaqilligi toʻgʻrisida qaror qabul qilingan.',
+      },
+      {
+        id: 2,
+        question: 'Agar 3x + 12 = 33 boʻlsa, x ning qiymatini toping.',
+        options: ['5', '7', '9', '6'],
+        correctAnswer: 1,
+        explanation: '3x = 33 - 12 => 3x = 21 => x = 7.',
+      },
+      {
+        id: 3,
+        question: 'Quyidagi soʻzlardan qaysi biri toʻgʻri imloda yozilgan?',
+        options: ['Inshoot', 'Inshot', 'Inshotlar', 'Inshoat'],
+        correctAnswer: 0,
+        explanation: 'Oʻzbek adabiy tilining amaldagi imlo qoidalariga koʻra «inshoot» soʻzi qoʻsh «o» bilan yoziladi.',
+      },
+      {
+        id: 4,
+        question: 'Oʻzbekiston Respublikasi Konstitutsiyasi qachon qabul qilingan?',
+        options: ['1992-yil 8-dekabr', '1991-yil 1-sentyabr', '1993-yil 2-iyul', '1994-yil 1-iyul'],
+        correctAnswer: 0,
+        explanation: 'Oʻzbekiston Respublikasining ilk Konstitutsiyasi 1992-yil 8-dekabrda qabul qilingan.',
+      },
+      {
+        id: 5,
+        question: 'Sonning 25 foizi 60 ga teng. Bu sonning oʻzini toping.',
+        options: ['240', '180', '300', '150'],
+        correctAnswer: 0,
+        explanation: 'Sonni x desak: 0.25 * x = 60 => x = 60 / 0.25 = 240.',
+      },
+      {
+        id: 6,
+        question: 'Alisher Navoiyning «Xamsa» dostoni qaysi tilda yozilgan?',
+        options: ['Eski oʻzbek (turkiy) tilida', 'Arab tilida', 'Fors-tojik tilida', 'Urdu tilida'],
+        correctAnswer: 0,
+        explanation: 'Alisher Navoiy birinchi boʻlib turkiy tilda toʻliq besh doston (Xamsa) yaratgan dahodir.',
+      },
+      {
+        id: 7,
+        question: 'Yorugʻlik tezligi vakuumda taxminan qanchaga teng?',
+        options: ['300 000 km/s', '150 000 km/s', '30 000 km/s', '1 000 000 km/s'],
+        correctAnswer: 0,
+        explanation: 'Yorugʻlikning vakuumdagi tezligi c ≈ 300 000 km/s (aniqrogʻi 299 792 458 m/s).',
+      },
+      {
+        id: 8,
+        question: 'Yer sharidagi eng chuqur botiq qaysi?',
+        options: ['Mariana botigʻi (taxminan 11 022 m)', 'Baykal botigʻi', 'Yava botigʻi', 'Puerto-Riko botigʻi'],
+        correctAnswer: 0,
+        explanation: 'Tinch okeanida joylashgan Mariana botigʻi Yer yuzidagi eng chuqur nuqtadir.',
+      },
+    ],
+  },
+  {
+    id: 'test_umumiy_2',
+    category: 'umumiy',
+    categoryName: 'Umumiy testlar',
+    title: 'Mantiqiy Fikrlash va Intellektual IQ Sinovi',
+    description: 'Qiyosiy mantiq, ketma-ketliklar, qonuniyatlarni topish va fazoviy tafakkur boʻyicha sinov.',
+    durationMinutes: 20,
+    maxScore: 50,
+    difficulty: 'Murakkab',
+    participantsCount: 2950,
+    rating: 4.8,
+    gradient: 'from-violet-600 via-purple-600 to-indigo-600',
+    badgeColor: 'bg-purple-500/15 text-purple-800 dark:text-purple-300 border-purple-400/30',
+    iconName: 'compass',
+    questions: [
+      {
+        id: 1,
+        question: 'Ketma-ketlikni davom ettiring: 2, 4, 8, 16, 32, ?',
+        options: ['64', '48', '56', '72'],
+        correctAnswer: 0,
+        explanation: 'Har bir navbatdagi son avvalgisini 2 ga koʻpaytirish orqali hosil qilingan: 32 * 2 = 64.',
+      },
+      {
+        id: 2,
+        question: 'Agar barcha A lar B boʻlsa va barcha B lar C boʻlsa, quyidagilardan qaysi biri mutlaqo toʻgʻri?',
+        options: ['Barcha A lar C dir', 'Barcha C lar A dir', 'Hech qanday A C emas', 'Barcha B lar A dir'],
+        correctAnswer: 0,
+        explanation: 'Mantiqiy tranzitivlik qoidasiga koʻra: A ⊆ B va B ⊆ C boʻlsa, demak har doim A ⊆ C.',
+      },
+      {
+        id: 3,
+        question: 'Dushanba, Chorshanba, Juma, ? — Qonuniyat asosida keyingi kunni aniqlang.',
+        options: ['Yakshanba', 'Shanba', 'Seshanba', 'Payshanba'],
+        correctAnswer: 0,
+        explanation: 'Bir kundan sakrab ketilyapti: Dushanba -> (Seshanba) -> Chorshanba -> (Payshanba) -> Juma -> (Shanba) -> Yakshanba.',
+      },
+      {
+        id: 4,
+        question: 'Besh nafar doʻst bir-biri bilan qoʻl berib koʻrishdi. Jami necha marta qoʻl berishish boʻlgan?',
+        options: ['10 marta', '15 marta', '20 marta', '25 marta'],
+        correctAnswer: 0,
+        explanation: 'Qoʻl berishishlar soni kombinatorika formulasi boʻyicha: C(5, 2) = (5 * 4) / 2 = 10.',
+      },
+      {
+        id: 5,
+        question: 'Bir poyezd 120 km/soat tezlik bilan harakatlanmoqda. U 15 daqiqada qancha masofani bosib oʻtadi?',
+        options: ['30 km', '20 km', '40 km', '25 km'],
+        correctAnswer: 0,
+        explanation: '15 daqiqa bu 1/4 soat. Masofa = 120 * (1/4) = 30 km.',
+      },
+    ],
+  },
+
+  // ================= TARIX FANI =================
+  {
+    id: 'test_tarix_1',
+    category: 'tarix',
+    categoryName: 'Tarix fani',
+    title: 'Oʻzbekiston Tarixi: Amir Temur va Temuriylar Saltanati',
+    description: 'Buyuk Sohibqiron Amir Temurning davlat boshqaruvi, harbiy yurishlari va Temuriylar renessansi.',
+    durationMinutes: 20,
+    maxScore: 40,
+    difficulty: 'Oʻrtacha',
+    participantsCount: 4210,
+    rating: 4.95,
+    gradient: 'from-amber-600 via-yellow-600 to-orange-700',
+    badgeColor: 'bg-amber-600/15 text-amber-900 dark:text-amber-300 border-amber-500/30',
+    iconName: 'book',
+    questions: [
+      {
+        id: 1,
+        question: 'Amir Temur qachon va qayerda tavallud topgan?',
+        options: ['1336-yil 9-aprel, Xoʻja Ilgʻor qishlogʻida', '1340-yil 1-may, Samarqandda', '1330-yil 12-avgust, Keshda', '1336-yil 1-sentyabr, Buxoroda'],
+        correctAnswer: 0,
+        explanation: 'Amir Temur 1336-yil 9-aprelda Kesh (Shahrisabz) yaqinidagi Xoʻja Ilgʻor qishlogʻida tugʻilgan.',
+      },
+      {
+        id: 2,
+        question: 'Amir Temurning davlat boshqaruvi va adolat haqidagi mashhur shiori qanday boʻlgan?',
+        options: ['«Kuch — adolatdadir»', '«Ilm — najotdir»', '«Birlashgan kuch qudratlidir»', '«Tinchlik — boylikdir»'],
+        correctAnswer: 0,
+        explanation: 'Sohibqironning bosh shiori «Kuch — adolatdadir» («Rosti rusti») boʻlgan.',
+      },
+      {
+        id: 3,
+        question: 'Samarqanddagi mashhur rasadxona kimning farmoyishi bilan qurilgan?',
+        options: ['Mirzo Ulugʻbek', 'Shohruh Mirzo', 'Husayn Boyqaro', 'Bobur Mirzo'],
+        correctAnswer: 0,
+        explanation: 'Mirzo Ulugʻbek 1424–1428 yillarda Samarqandda oʻz davrining eng ulkan astronomik rasadxonasini barpo ettirgan.',
+      },
+      {
+        id: 4,
+        question: 'Amir Temurning davlat boshqaruvi qonun-qoidalari aks etgan tarixiy asar qaysi?',
+        options: ['«Temur tuzuklari»', '«Zafarnoma»', '«Boburnoma»', '«Tarixi Rashidiy»'],
+        correctAnswer: 0,
+        explanation: '«Temur tuzuklari» — Sohibqironning davlatni boshqarish, qoʻshin tuzilishi va harbiy mahoratga oid qonun-qoidalari toʻplamidir.',
+      },
+      {
+        id: 5,
+        question: '1402-yilda Anqara jangida Amir Temur qaysi davlat hukmdorini magʻlub etgan?',
+        options: ['Usmonli turklar sultoni Boyazid Yildirimni', 'Oltin Oʻrda xoni Toʻxtamishni', 'Eron shohini', 'Hindiston rojasi Mahmudshohni'],
+        correctAnswer: 0,
+        explanation: '1402-yilgi Anqara jangida Amir Temur Usmonli sultoni Boyazid I (Yildirim) ustidan gʻalaba qozondi.',
+      },
+    ],
+  },
+  {
+    id: 'test_tarix_2',
+    category: 'tarix',
+    categoryName: 'Tarix fani',
+    title: 'Qadimgi Dunyo va Sharq Allomalari',
+    description: 'Qadimgi Baqtriya, Xorazm, Soʻgʻd davlatlari hamda Al-Xorazmiy, Beruniy va Ibn Sino merosi.',
+    durationMinutes: 15,
+    maxScore: 30,
+    difficulty: 'Oson',
+    participantsCount: 2130,
+    rating: 4.85,
+    gradient: 'from-yellow-600 via-amber-700 to-stone-700',
+    badgeColor: 'bg-yellow-600/15 text-yellow-900 dark:text-yellow-300 border-yellow-500/30',
+    iconName: 'book',
+    questions: [
+      {
+        id: 1,
+        question: '«Tibbiyot qonunlari» («Al-Qonun fit-tibb») asarining muallifi kim?',
+        options: ['Abu Ali ibn Sino (Avitsenna)', 'Abu Rayhon Beruniy', 'Al-Xorazmiy', 'Al-Fargʻoniy'],
+        correctAnswer: 0,
+        explanation: 'Abu Ali ibn Sino tibbiyot ilmining asoschilaridan biri hisoblanib, uning «Tib qonunlari» asari koʻp asrlar Yevropa universitetlarida darslik boʻlgan.',
+      },
+      {
+        id: 2,
+        question: 'Algebra faniga asos solgan va nol raqamini fanga kiritgan vatandoshimiz kim?',
+        options: ['Muhammad ibn Muso al-Xorazmiy', 'Abu Nasr Forobiy', 'Mirzo Ulugʻbek', 'Mahmud Qoshgʻariy'],
+        correctAnswer: 0,
+        explanation: 'Al-Xorazmiy oʻzining «Al-Jabr» asari bilan mustaqil matematika sohasi boʻlmish algebraga asos solgan.',
+      },
+      {
+        id: 3,
+        question: 'Zardushtiylik dinining muqaddas kitobi qanday ataladi?',
+        options: ['«Avesto»', '«Veda»', '«Tavrot»', '«Tripitaka»'],
+        correctAnswer: 0,
+        explanation: '«Avesto» qadimgi ajdodlarimiz yaratgan zardushtiylik taʼlimotining muqaddas kitobidir.',
+      },
+      {
+        id: 4,
+        question: 'Yer sharining radiusini juda aniq hisoblab bergan buyuk alloma kim?',
+        options: ['Abu Rayhon Beruniy', 'Pifagor', 'Arximed', 'Ptolemey'],
+        correctAnswer: 0,
+        explanation: 'Beruniy oʻzining original usuli bilan Yer shari radiusini hisoblab chiqqan (xatolik 1% dan ham kam boʻlgan).',
+      },
+    ],
+  },
+
+  // ================= ALGEBRA =================
+  {
+    id: 'test_algebra_1',
+    category: 'algebra',
+    categoryName: 'Algebra',
+    title: 'Algebra: Chiziqli va Kvadrat Tenglamalar, Viyet Teoremasi',
+    description: 'Kvadrat tenglamaning diskriminanti, ildizlar xossalari, qisqa koʻpaytirish formulalari.',
+    durationMinutes: 20,
+    maxScore: 35,
+    difficulty: 'Oʻrtacha',
+    participantsCount: 3620,
+    rating: 4.9,
+    gradient: 'from-blue-600 via-cyan-600 to-teal-600',
+    badgeColor: 'bg-blue-500/15 text-blue-800 dark:text-blue-300 border-blue-400/30',
+    iconName: 'calculator',
+    questions: [
+      {
+        id: 1,
+        question: 'x² - 7x + 10 = 0 tenglamaning ildizlarini toping.',
+        options: ['x₁ = 2, x₂ = 5', 'x₁ = -2, x₂ = -5', 'x₁ = 1, x₂ = 10', 'x₁ = 3, x₂ = 4'],
+        correctAnswer: 0,
+        explanation: 'Viyet teoremasiga koʻra: x₁ + x₂ = 7, x₁ * x₂ = 10. Sonlar 2 va 5 boʻladi.',
+      },
+      {
+        id: 2,
+        question: 'ax² + bx + c = 0 kvadrat tenglama yagona ildizga ega boʻlishi uchun diskriminant qanday boʻlishi kerak?',
+        options: ['D = 0', 'D > 0', 'D < 0', 'D ≥ 1'],
+        correctAnswer: 0,
+        explanation: 'Agar D = b² - 4ac = 0 boʻlsa, kvadrat tenglama bitta karrali ildizga ega boʻladi: x = -b / (2a).',
+      },
+      {
+        id: 3,
+        question: '(a - b)² qisqa koʻpaytirish formulasi qaysi javobda toʻgʻri berilgan?',
+        options: ['a² - 2ab + b²', 'a² - b²', 'a² + 2ab + b²', 'a² - ab + b²'],
+        correctAnswer: 0,
+        explanation: 'Ikkita son ayirmasining kvadrati: (a - b)² = a² - 2ab + b².',
+      },
+      {
+        id: 4,
+        question: 'Tenglamani yeching: 2(x - 3) + 4 = 14',
+        options: ['x = 8', 'x = 6', 'x = 5', 'x = 10'],
+        correctAnswer: 0,
+        explanation: '2x - 6 + 4 = 14 => 2x - 2 = 14 => 2x = 16 => x = 8.',
+      },
+      {
+        id: 5,
+        question: 'x² - 9 = 0 tenglamaning ildizlari yigʻindisini toping.',
+        options: ['0', '6', '-6', '3'],
+        correctAnswer: 0,
+        explanation: 'x² = 9 => x₁ = 3, x₂ = -3. Ularning yigʻindisi: 3 + (-3) = 0.',
+      },
+    ],
+  },
+  {
+    id: 'test_algebra_2',
+    category: 'algebra',
+    categoryName: 'Algebra',
+    title: 'Arifmetik va Geometrik Progressiya, Foizlar',
+    description: 'n-had formulasi, dastlabki n ta hadlar yigʻindisi va murakkab foiz hisoblari.',
+    durationMinutes: 20,
+    maxScore: 35,
+    difficulty: 'Murakkab',
+    participantsCount: 2470,
+    rating: 4.85,
+    gradient: 'from-sky-600 via-blue-700 to-indigo-800',
+    badgeColor: 'bg-cyan-500/15 text-cyan-800 dark:text-cyan-300 border-cyan-400/30',
+    iconName: 'calculator',
+    questions: [
+      {
+        id: 1,
+        question: 'Arifmetik progressiyada a₁ = 3, d = 4 boʻlsa, a₁₀ ni toping.',
+        options: ['39', '43', '35', '40'],
+        correctAnswer: 0,
+        explanation: 'aₙ = a₁ + (n - 1)d => a₁₀ = 3 + (10 - 1) * 4 = 3 + 36 = 39.',
+      },
+      {
+        id: 2,
+        question: 'Geometrik progressiyada b₁ = 2, q = 3 boʻlsa, dastlabki 3 ta had yigʻindisini toping.',
+        options: ['26', '24', '18', '20'],
+        correctAnswer: 0,
+        explanation: 'b₁ = 2, b₂ = 2*3 = 6, b₃ = 6*3 = 18. Yigʻindi = 2 + 6 + 18 = 26.',
+      },
+      {
+        id: 3,
+        question: 'Tovarning narxi dastlab 20% ga oshirildi, soʻngra 20% ga pasaytirildi. Narx qanday oʻzgardi?',
+        options: ['4% ga pasaydi', 'Oʻzgarmadi', '4% ga oshdi', '2% ga pasaydi'],
+        correctAnswer: 0,
+        explanation: 'Dastlab narx 100 boʻlsa: 100 * 1.2 = 120. Keyin 120 * 0.8 = 96. Demak, narx 4% ga pasaydi.',
+      },
+    ],
+  },
+
+  // ================= BIOLOGIYA =================
+  {
+    id: 'test_biologiya_1',
+    category: 'biologiya',
+    categoryName: 'Biologiya',
+    title: 'Biologiya: Odam Anatomiyasi va Ichki Tizimlar',
+    description: 'Yurak-qon tomir tizimi, nafas olish, asab tizimi va odam aʼzolarining oʻzaro uygʻunligi.',
+    durationMinutes: 15,
+    maxScore: 30,
+    difficulty: 'Oʻrtacha',
+    participantsCount: 3120,
+    rating: 4.92,
+    gradient: 'from-emerald-600 via-teal-600 to-green-700',
+    badgeColor: 'bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border-emerald-400/30',
+    iconName: 'dna',
+    questions: [
+      {
+        id: 1,
+        question: 'Odam yuragi necha kameradan iborat?',
+        options: ['4 ta (2 ta boʻlmacha va 2 ta qorincha)', '3 ta (2 boʻlmacha, 1 qorincha)', '2 ta', '4 ta qorincha'],
+        correctAnswer: 0,
+        explanation: 'Sutemizuvchilar va odam yuragi 4 kameradan: oʻng va chap boʻlmachalar hamda oʻng va chap qorinchalardan tashkil topgan.',
+      },
+      {
+        id: 2,
+        question: 'Qonda kislorodni tana toʻqimalariga tashiydigan hujayralar qaysi?',
+        options: ['Eritrotsitlar (gemoglobin orqali)', 'Leykotsitlar', 'Trombotsitlar', 'Plazma oqsillari'],
+        correctAnswer: 0,
+        explanation: 'Eritrotsitlar tarkibidagi gemoglobin oqsili oʻpkadan kislorodni biriktirib olib toʻqimalarga yetkazadi.',
+      },
+      {
+        id: 3,
+        question: 'Odam organizmidagi eng yirik bez qaysi?',
+        options: ['Jigar', 'Oshqozon osti bezi', 'Qalqonsimon bez', 'Buyrak usti bezi'],
+        correctAnswer: 0,
+        explanation: 'Jigar odam tanasidagi eng yirik ichki aʼzo va bez hisoblanadi (vazni taxminan 1.5 kg).',
+      },
+      {
+        id: 4,
+        question: 'Inson asab tizimining asosiy tuzilish va funksional birligi nima?',
+        options: ['Neyron', 'Nefron', 'Akson', 'Sinaps'],
+        correctAnswer: 0,
+        explanation: 'Neyron — asab toʻqimasining qoʻzgʻalish va impuls oʻtkazishga ixtisoslashgan hujayrasidir.',
+      },
+      {
+        id: 5,
+        question: 'Katta qon aylanish doirasi qayerdan boshlanadi?',
+        options: ['Chap qorinchadan', 'Oʻng qorinchadan', 'Chap boʻlmachadan', 'Oʻng boʻlmachadan'],
+        correctAnswer: 0,
+        explanation: 'Katta qon aylanish doirasi chap qorinchadan boshlanib, kislorodga boy qonni butun tanaga tarqatadi.',
+      },
+    ],
+  },
+  {
+    id: 'test_biologiya_2',
+    category: 'biologiya',
+    categoryName: 'Biologiya',
+    title: 'Sitologiya va Genetika: Hujayra hamda Mendel Qonunlari',
+    description: 'Hujayra organoidlari, DNK/RNK sintezi, mitoxondriya, genlar va irsiyat qonuniyatlari.',
+    durationMinutes: 15,
+    maxScore: 30,
+    difficulty: 'Murakkab',
+    participantsCount: 2280,
+    rating: 4.88,
+    gradient: 'from-green-600 via-emerald-700 to-lime-700',
+    badgeColor: 'bg-green-500/15 text-green-800 dark:text-green-300 border-green-400/30',
+    iconName: 'dna',
+    questions: [
+      {
+        id: 1,
+        question: 'Hujayraning «energiya stansiyasi» deb qaysi organoid ataladi?',
+        options: ['Mitoxondriya', 'Ribosoma', 'Golji majmuasi', 'Lizosoma'],
+        correctAnswer: 0,
+        explanation: 'Mitoxondriyalarda ATF (adenozintrifosfat) sintezlanadi va hujayra uchun energiya ishlab chiqariladi.',
+      },
+      {
+        id: 2,
+        question: 'Odam somatik hujayralarida xromosomalar soni nechta?',
+        options: ['46 ta (23 juft)', '23 ta', '48 ta', '92 ta'],
+        correctAnswer: 0,
+        explanation: 'Odamning oddiy (somatik) tan hujayralarida 46 ta (diploid toʻplam) xromosoma mavjud.',
+      },
+      {
+        id: 3,
+        question: 'Oʻsimlik hujayrasini hayvon hujayrasidan ajratib turuvchi asosiy belgi qaysi?',
+        options: ['Xloroplastlar va sellyuloza qobiq mavjudligi', 'Yadroning boʻlishi', 'Mitoxondriyaga egaligi', 'Ribosomalari'],
+        correctAnswer: 0,
+        explanation: 'Oʻsimlik hujayralari fotosintez qiluvchi plastidalar (xloroplastlar) va qattiq sellyuloza devoriga ega.',
+      },
+    ],
+  },
+
+  // ================= INGLIZ TILI =================
+  {
+    id: 'test_ingliz_1',
+    category: 'ingliz',
+    categoryName: 'Ingliz tili',
+    title: 'English Grammar: Tenses, Modals & Passive Voice',
+    description: 'Present/Past/Future tenses, conditional sentences (If clauses) and active to passive voice.',
+    durationMinutes: 20,
+    maxScore: 35,
+    difficulty: 'Oʻrtacha',
+    participantsCount: 4590,
+    rating: 4.96,
+    gradient: 'from-indigo-600 via-blue-600 to-sky-600',
+    badgeColor: 'bg-indigo-500/15 text-indigo-800 dark:text-indigo-300 border-indigo-400/30',
+    iconName: 'languages',
+    questions: [
+      {
+        id: 1,
+        question: 'Choose the correct tense: "By the time we arrived at the cinema, the film ______."',
+        options: ['had already started', 'has already started', 'starts', 'was already starting'],
+        correctAnswer: 0,
+        explanation: 'Past Perfect (had + V3) is used for an action that happened before another past event ("arrived").',
+      },
+      {
+        id: 2,
+        question: 'Complete the condition: "If I ______ more free time, I would travel around the world."',
+        options: ['had', 'have', 'will have', 'would have'],
+        correctAnswer: 0,
+        explanation: 'Second Conditional (unreal present): If + Past Simple, would + base verb.',
+      },
+      {
+        id: 3,
+        question: 'Turn into Passive: "The chef cooked a delicious meal yesterday."',
+        options: [
+          'A delicious meal was cooked by the chef yesterday.',
+          'A delicious meal is cooked by the chef yesterday.',
+          'A delicious meal has been cooked yesterday.',
+          'A delicious meal cooked the chef.',
+        ],
+        correctAnswer: 0,
+        explanation: 'Past Simple Passive formula is: was/were + Past Participle (V3).',
+      },
+      {
+        id: 4,
+        question: 'Choose the correct preposition: "She is very good ______ mathematics and languages."',
+        options: ['at', 'in', 'on', 'with'],
+        correctAnswer: 0,
+        explanation: 'The adjective phrase is "good at something" (e.g., good at math).',
+      },
+      {
+        id: 5,
+        question: 'Identify the correct question tag: "You haven’t seen my keys anywhere, ______?"',
+        options: ['have you', 'haven’t you', 'did you', 'do you'],
+        correctAnswer: 0,
+        explanation: 'Negative sentence takes a positive tag: "haven\'t seen" -> "have you?".',
+      },
+    ],
+  },
+  {
+    id: 'test_ingliz_2',
+    category: 'ingliz',
+    categoryName: 'Ingliz tili',
+    title: 'English Vocabulary & Reading Comprehension (B1–B2)',
+    description: 'Synonyms, idioms, academic phrasal verbs, context clues and sentence completions.',
+    durationMinutes: 15,
+    maxScore: 30,
+    difficulty: 'Murakkab',
+    participantsCount: 3180,
+    rating: 4.89,
+    gradient: 'from-blue-700 via-indigo-700 to-purple-800',
+    badgeColor: 'bg-blue-600/15 text-blue-900 dark:text-blue-300 border-blue-500/30',
+    iconName: 'languages',
+    questions: [
+      {
+        id: 1,
+        question: 'Which word is the closest synonym of "ABUNDANT"?',
+        options: ['Plentiful', 'Scarce', 'Tiny', 'Dangerous'],
+        correctAnswer: 0,
+        explanation: '"Abundant" means existing in large quantities; plentiful.',
+      },
+      {
+        id: 2,
+        question: 'What does the idiom "piece of cake" mean?',
+        options: ['Very easy task', 'Delicious food', 'Expensive gift', 'Difficult problem'],
+        correctAnswer: 0,
+        explanation: '"Piece of cake" is an idiom describing something very simple or effortless to achieve.',
+      },
+      {
+        id: 3,
+        question: 'Choose the correct phrasal verb: "The manager decided to ______ the meeting until tomorrow."',
+        options: ['put off', 'call off', 'give up', 'look after'],
+        correctAnswer: 0,
+        explanation: '"Put off" means to postpone or delay an event to a later time.',
+      },
+      {
+        id: 4,
+        question: 'Choose the opposite (antonym) of "GENUINE":',
+        options: ['Fake', 'Authentic', 'Original', 'Honest'],
+        correctAnswer: 0,
+        explanation: '"Genuine" means real or authentic; its antonym is fake or counterfeit.',
+      },
+    ],
+  },
+];

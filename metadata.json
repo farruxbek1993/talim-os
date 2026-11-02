@@ -1,0 +1,6 @@
+{
+  "name": "Bozorcha",
+  "description": "Oʻzbekistondagi zamonaviy onlayn doʻkon, buyurtmalar, chegirmalar va oʻquvchilar hamjamiyati platformasi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
